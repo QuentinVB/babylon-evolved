@@ -1,17 +1,5 @@
-//import * as _ from 'lodash';
-import "./assets/css/style.scss";
+import "./sass/style.scss";
 import { Engine, Scene, ArcRotateCamera, HemisphericLight, Vector3, MeshBuilder, Mesh } from "babylonjs";
-/*
-function component() {
-const element = document.createElement('div');
-
-element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-return element;
-}
-
-document.body.appendChild(component());
-*/
 
 var canvas: any = document.getElementById("renderCanvas");
 var engine: Engine = new Engine(canvas, true);
