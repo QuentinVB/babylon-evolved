@@ -1,16 +1,20 @@
 {
   "name": "babylon-evolved",
-  "version": "0.0.1",
-  "description": "An evolved version of babylon to handle generic level design and mechanics",
-  "private": true,
+  "version": "0.0.3",
+  "description": "An advanced version of babylon to handle generic level design and mechanics with webpack build configuration",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuentinVB/babylon-evolved.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.js --progress",
     "dev": "webpack serve --config webpack/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.js --progress",
     "lint": "eslint --ext ts,tsx src/*"
   },
-  "author": "",
+  "author": "Quentin Vanbutsele",
   "license": "ISC",
+
   "devDependencies": {
     "@types/lodash": "^4.14.168",
     "babel-core": "^6.26.3",
