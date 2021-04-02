@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against webpack dev server",
+      "port": 9222,
+      "url": "http://localhost:9000",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps": true,
+      "disableNetworkCache": true,
+      "trace": "verbose",
+      "preLaunchTask": "(Start) Webpack Dev Server"
+    }
+  ]
+}

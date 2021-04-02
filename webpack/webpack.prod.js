@@ -53,5 +53,8 @@ module.exports = merge(common, {
   },
   output: {
     clean: true
-  }
+  },
+  performance: {
+    hints: 'warning',
+  },
 });

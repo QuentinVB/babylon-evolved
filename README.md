@@ -10,39 +10,11 @@ https://webpack.js.org/configuration/externals/
 
     should add linter
 
-    should minify
-
-babel rc
-{
-    "presets": [
-      ["@babel/env", {
-        "modules": false,
-        "targets": {
-          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-        }
-      }]
-    ]
-  }
-
-
-
-  prod config
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false, // Must be set to true if using source-maps in production
-        extractComments: true,
-        terserOptions: {
-          output: {
-            comments: /@license/i,
-          },
-          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-        }
-      }),
-    ],
-  },
+optimization via terser ?
 
   //https://www.alsacreations.com/tuto/lire/1754-debuter-avec-webpack.html add dashboard ?
+
+  https://webpack.js.org/guides/lazy-loading/
+
+  https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code
+  https://blog.alexanderwolf.tech/debugging-a-web-app-in-vs-code/

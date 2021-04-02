@@ -1,0 +1,13 @@
+{
+    "editor.tabSize": 2,
+    "search.exclude": {
+        "**/node_modules": true
+    },
+    "editor.formatOnSave": true,
+    //disable default javascript validator replaced by eslint
+    "javascript.validate.enable": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": false
+        },
+    "eslint.validate": ["typescript"]
+}
