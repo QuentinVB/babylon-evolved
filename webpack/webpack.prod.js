@@ -5,6 +5,7 @@ const common = require('./webpack.common.js');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const root = path.resolve(__dirname, '..');
 
@@ -48,6 +49,11 @@ module.exports = merge(common, {
         toType: 'dir'
       }, ],
     }),
+    new BundleAnalyzerPlugin({
+      analyzerMode:"server",
+      analyzerPort:8888,
+      openAnalyzer:false
+    })
   ],
   //https://webpack.js.org/configuration/optimization/#root
   optimization: {

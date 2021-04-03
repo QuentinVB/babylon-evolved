@@ -1,6 +1,9 @@
 import "./sass/style.scss";
 import { Engine, Scene, ArcRotateCamera, HemisphericLight, Vector3, MeshBuilder, Mesh } from "babylonjs";
+import Main from './main';
 
+/*
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const canvas: any = document.getElementById("renderCanvas");
 const engine: Engine = new Engine(canvas, true);
 
@@ -17,3 +20,10 @@ const scene: Scene = createScene();
 engine.runRenderLoop(() => {
     scene.render();
 });
+*/
+/*
+
+
+*/
+const main = new Main();
+main.run();
