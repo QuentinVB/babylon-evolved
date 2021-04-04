@@ -23,6 +23,6 @@
         "outDir": "./dist"
     },
     "files": [
-        "./src/app.ts"
+        "src/App.ts"
     ]
 }

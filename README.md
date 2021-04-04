@@ -1,7 +1,7 @@
 # Babylon-Evolved
 Aka : "I'm tired to start over a configuration for my babylon.JS game project, so why not building a full project configuration and share it ?"
 
-V 0.0.3
+V 0.0.4
 Work in progress
 
 ## Features & Highlight
@@ -38,7 +38,10 @@ TODO : retrieve module, loading, and so from quaternion game (may be required to
 https://doc.babylonjs.com/divingDeeper/developWithBjs/vsCode
 
 # Blender level 
-use the blender to babylon python module
+I'm a Blender user since 2008. It was obviously my choice to develop games with babylon js. 
+I use the [blender to babylon python addon](https://doc.babylonjs.com/extensions/Exporters/Blender)There is 2 approach in order to use the 3D assets created from blender.
+## Entire scene
+The blender scene you export and all his content will be your babylon js scene
 
 ## Config
 Further improvement

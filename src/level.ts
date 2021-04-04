@@ -1,7 +1,9 @@
-import { Scene, ArcRotateCamera, Mesh, Vector3, KeyboardEventTypes, CannonJSPlugin, PointLight } from 'babylonjs';
+import { Scene, ArcRotateCamera, Mesh, Vector3, KeyboardEventTypes, CannonJSPlugin, PointLight, SceneLoader } from 'babylonjs';
 import Helpers from './helpers/helpers'
-import Main from './main'
-import { Character, Ground, Skybox } from './actors';
+import Core from './core'
+import { Character, Ground, Skybox } from './components/index';
+import * as States from './states/index';
+import { Light } from 'babylonjs/Lights/light';
 
 export default class Level {
   //public
@@ -10,36 +12,44 @@ export default class Level {
   public _character: Mesh = null;
   public _ground: Mesh = null;
   public _skybox: Mesh = null;
+  public _lights: Light[] = [];
+  public gameState: States.AbstractState;
 
   //private
-  private env: Main;
+  private env: Core;
 
-  constructor(levelname: string, env: Main) {
+  constructor(env: Core, levelname?: string) {
 
     this.env = env;
+    /*
+        BABYLON.SceneLoader.LoadAssetContainer("assets/mesh/", "house.babylon", scene, function (container) {
+            defaultHouse= container.meshes[0];     
+        });
+    */
+    if (levelname) {
+      SceneLoader.LoadAsync(env.CONFIG.meshUrl, levelname + ".babylon", this.env.engine)
+        .then((scene) => {
+          this.scene = scene;
+          this.InitLevel();
+        });
+    }
+    else {
+      this.scene = new Scene(this.env.engine);
+      this.InitLevel();
+    }
 
-    this.scene = new Scene(this.env.engine);
-
+    this.gameState = new States.Default(this.env);
+    this.scene.registerBeforeRender(() => { this.gameState.Update() });
+  }
+  private InitLevel(): void {
     //activate physic
-    this.scene.enablePhysics(new Vector3(0, -9.81, 0), new CannonJSPlugin());
-
+    this.scene.enablePhysics(new Vector3(0, this.env.CONFIG.GRAVITY, 0), new CannonJSPlugin());
     //meshes
     this.loadMeshes();
-
     //actions
     this.bindActions();
-
     Helpers.showAxis(7, this.scene);
-
-    //use this to load a level from babylon 3D file
-    /*
-    SceneLoader.LoadAsync("../assets/", levelname+".babylon", env.engine).then((scene)=>
-    {
-        
-    });
-    */
   }
-
   /*
    * load the meshes from the file and assign the rôles
    */
@@ -62,7 +72,7 @@ export default class Level {
     //this._camera.target=this._character;
 
     //setup lights
-    const light = new PointLight("light", new Vector3(5, 5, -5), this.scene);
+    this._lights.push(new PointLight("light", new Vector3(5, 5, -5), this.scene));
 
     //setup ground
     this._ground = Ground.create(this.env, this);
@@ -94,5 +104,4 @@ export default class Level {
       }
     }
   }
-
 }

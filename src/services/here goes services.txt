@@ -1,0 +1,1 @@
+services can be called from across the app (trough protoype/singleton pattern) and provide access to ressource such as Server via REST or socket or to the localstorage.
