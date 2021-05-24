@@ -118,3 +118,4 @@ dist
 # graphic workshop
 workshop/
 assets/
+lib/*.js

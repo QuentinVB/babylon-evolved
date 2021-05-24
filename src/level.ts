@@ -1,22 +1,23 @@
-import { Scene, ArcRotateCamera, Mesh, Vector3, KeyboardEventTypes, CannonJSPlugin, PointLight, SceneLoader } from 'babylonjs';
+import { Scene, ArcRotateCamera, Mesh, Vector3, KeyboardEventTypes, CannonJSPlugin, SceneLoader, Color4, Light } from '@babylonjs/core';
 import Helpers from './helpers/helpers'
 import Core from './core'
-import { Character, Ground, Skybox } from './components/index';
+import { Blackhole, Character, Ground, Skybox } from './components/index';
 import * as States from './states/index';
-import { Light } from 'babylonjs/Lights/light';
+//if (process.env.NODE_ENV === 'development') {
+
 
 export default class Level {
   //public
   public scene: Scene;
-  public _camera: ArcRotateCamera = null;
-  public _character: Mesh = null;
-  public _ground: Mesh = null;
-  public _skybox: Mesh = null;
+  public _camera: ArcRotateCamera;
+  public _character: Mesh;
+  public _ground: Ground;
+  public _skybox: Mesh;
   public _lights: Light[] = [];
   public gameState: States.AbstractState;
 
   //private
-  private env: Core;
+  public readonly env: Core;
 
   constructor(env: Core, levelname?: string) {
 
@@ -30,20 +31,23 @@ export default class Level {
       SceneLoader.LoadAsync(env.CONFIG.meshUrl, levelname + ".babylon", this.env.engine)
         .then((scene) => {
           this.scene = scene;
-          this.InitLevel();
+          //this.InitLevel();
         });
     }
     else {
       this.scene = new Scene(this.env.engine);
-      this.InitLevel();
+
+      //this.InitLevel();
     }
 
     this.gameState = new States.Default(this.env);
     this.scene.registerBeforeRender(() => { this.gameState.Update() });
   }
-  private InitLevel(): void {
+  public InitLevel(): void {
     //activate physic
-    this.scene.enablePhysics(new Vector3(0, this.env.CONFIG.GRAVITY, 0), new CannonJSPlugin());
+    //this.scene.enablePhysics(new Vector3(0, this.env.CONFIG.GRAVITY, 0), new CannonJSPlugin());
+    if (process.env.NODE_ENV === 'development') this.scene.debugLayer.show();
+    this.scene.clearColor = new Color4(0.0, 0.0, 0.0, 1);
     //meshes
     this.loadMeshes();
     //actions
@@ -72,14 +76,16 @@ export default class Level {
     //this._camera.target=this._character;
 
     //setup lights
-    this._lights.push(new PointLight("light", new Vector3(5, 5, -5), this.scene));
+    //this._lights.push(new PointLight("light", new Vector3(5, 5, -5), this.scene));
 
     //setup ground
-    this._ground = Ground.create(this.env, this);
+    //this._ground = new Ground(this.env);
 
     //skybox
 
-    this._skybox = Skybox.create(this.env, this);
+    //this._skybox = Skybox.create(this.env, this);
+
+    const blackhole = new Blackhole(this);
 
   }
 

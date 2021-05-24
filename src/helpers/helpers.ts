@@ -1,4 +1,4 @@
-import { Vector3, Color3, Scene, MeshBuilder } from 'babylonjs';
+import { Vector3, Color3, Scene, MeshBuilder } from '@babylonjs/core';
 
 export default class Helpers {
   /**

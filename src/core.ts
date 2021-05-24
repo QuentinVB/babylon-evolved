@@ -1,5 +1,8 @@
-import { Engine, Scene } from 'babylonjs';
+import { Engine, Scene } from '@babylonjs/core';
 import Level from './level';
+import "@babylonjs/core/Debug/debugLayer";
+import "@babylonjs/inspector";
+
 
 /**
  * The main game container, it will handle high level logic and rendering of the game
@@ -32,7 +35,8 @@ export default class Core {
 
   // Constructor
   constructor() {
-    this.canvas = <HTMLCanvasElement>document.getElementById('renderCanvas');
+    //Engine.isSupported()
+    this.canvas = document.getElementById('renderCanvas') as HTMLCanvasElement;
     this.engine = new Engine(this.canvas);
     //asset manager : https://doc.babylonjs.com/divingDeeper/importers/assetManager
     this.loadLevel();//"level0"
@@ -41,6 +45,12 @@ export default class Core {
    * Runs the engine to render the level into the canvas
    */
   public run(): void {
+    /*        var options = new BABYLON.SceneOptimizerOptions();
+        options.addOptimization(new BABYLON.HardwareScalingOptimization(0, 1));
+
+        // Optimizer
+        var optimizer = new BABYLON.SceneOptimizer(this.scene, options);
+        optimizer.start();*/
     this.engine.runRenderLoop(() => {
       if (this.level != undefined && this.level.scene != undefined) this.scene.render();
     });
@@ -51,5 +61,6 @@ export default class Core {
   public loadLevel(levelname?: string): void {
     if (this.level) this.level.scene.dispose();
     this.level = new Level(this, levelname);
+    this.level.InitLevel();
   }
 }

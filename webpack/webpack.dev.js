@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const root = path.resolve(__dirname, '..');
 
-
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -15,16 +14,13 @@ module.exports = merge(common, {
     rules: [{
       test: /\.s[ac]ss$/i,
       use: [
-        // Creates `style` nodes from JS strings
         MiniCssExtractPlugin.loader,
-        // Translates CSS into CommonJS
         {
           loader: "css-loader",
           options: {
             sourceMap: true,
           },
         },
-        // Compiles Sass to CSS
         {
           loader: "sass-loader",
           options: {
@@ -46,17 +42,20 @@ module.exports = merge(common, {
   ],
   //https://webpack.js.org/configuration/dev-server/
   devServer: {
-    //static assets
-    contentBase: path.join(root, 'assets'),
+    //static assets path
+    contentBase: [
+      path.join(root, 'assets'),
+      path.join(root, 'lib')
+    ],
     contentBasePublicPath: '/public',
-    //dynamic assets
+    //dynamic assets path
     filename: '/public/js/main.js',
     publicPath: '/',
     historyApiFallback: {
       index: 'index.html'
     },
     //http
-    compress: false,
+    compress: true,
     port: 9000,
     headers: {
       'Access-Control-Allow-Origin': '*'

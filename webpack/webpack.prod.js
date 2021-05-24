@@ -13,14 +13,11 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   module: {
-    rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
-      },
+    rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
+          //TODO: should find a way to avoid duplication for CSS
           MiniCssExtractPlugin.loader,
           "css-loader",
           {
@@ -47,12 +44,13 @@ module.exports = merge(common, {
         from: path.resolve(root, "assets"),
         to: path.resolve(root, "dist/public/"),
         toType: 'dir'
-      }, ],
+      },],
     }),
+    //TODO : make analyzer optionnal, according to config (ex: staging ?)
     new BundleAnalyzerPlugin({
-      analyzerMode:"server",
-      analyzerPort:8888,
-      openAnalyzer:false
+      analyzerMode: "server",
+      analyzerPort: 8888,
+      openAnalyzer: false
     })
   ],
   //https://webpack.js.org/configuration/optimization/#root

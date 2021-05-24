@@ -1,6 +1,6 @@
 import Core from '../core'
 import Level from '../level'
-import { Mesh, StandardMaterial, Color3, CubeTexture, MeshBuilder, Texture } from 'babylonjs';
+import { Mesh, StandardMaterial, Color3, CubeTexture, MeshBuilder, Texture } from '@babylonjs/core';
 
 export default class Skybox {
   public static create(env: Core, level: Level): Mesh {

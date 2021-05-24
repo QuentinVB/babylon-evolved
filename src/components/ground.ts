@@ -1,11 +1,16 @@
-import Core from '../core'
 import Level from '../level'
-import { Mesh, PhysicsImpostor, MeshBuilder, } from 'babylonjs';
+import { PhysicsImpostor, MeshBuilder, } from '@babylonjs/core';
+import GameObject from './gameobject';
 
-export default class Ground {
-  public static create(env: Core, level: Level): Mesh {
+export default class Ground extends GameObject {
+  //, parameters: unknown
+  /**
+   *
+   */
+  constructor(level: Level) {
+    super(level);
     //mesh
-    const ground = MeshBuilder.CreateGround('ground', { width: 512, height: 512, subdivisions: 32 }, level.scene);
+    const ground = MeshBuilder.CreateGround('ground', { width: 512, height: 512, subdivisions: 32 }, this.Level.scene);
     ground.position.set(0, -1, 0);
 
     //physic
@@ -15,6 +20,6 @@ export default class Ground {
       friction: 1.0
     });
 
-    return ground;
+    this.MainMesh = ground;
   }
 }

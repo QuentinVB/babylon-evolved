@@ -1,6 +1,6 @@
 import Core from '../core'
 import Level from '../level'
-import { Mesh, StandardMaterial, Vector3, Color3, PhysicsImpostor, MeshBuilder } from 'babylonjs';
+import { Mesh, StandardMaterial, Vector3, Color3, PhysicsImpostor, MeshBuilder } from '@babylonjs/core';
 
 //TODO : should use the 
 export default class Character {

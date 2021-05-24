@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
 const root = path.resolve(__dirname, '..');
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
                 },
             },
             exclude: /node_modules/,
-        }, ],
+        },],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -30,9 +31,6 @@ module.exports = {
         }),
         new ESLintPlugin()
     ],
-    externals: {
-        'babylonjs': 'BABYLON',
-    },
 
     output: {
         path: path.resolve(root, 'dist'),

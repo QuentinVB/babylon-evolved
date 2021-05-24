@@ -1,9 +1,17 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "es6",
+        "module": "esNext",
+        "moduleResolution": "node", //new
+        "strict": true, //new
         "noResolve": false,
         "noImplicitAny": false,
+        /* stricter rules
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        */
+        "skipLibCheck": true, //new
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
@@ -14,13 +22,16 @@
             "es2015.promise",
             "es5"
         ],
+        /*
         "types": [
             "babylonjs",
             "babylonjs-gui",
             "babylonjs-materials"
         ],
+        */
         "declaration": true,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "rootDir": "./src" //new
     },
     "files": [
         "src/App.ts"
