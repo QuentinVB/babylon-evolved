@@ -79,13 +79,11 @@ https://doc.babylonjs.com/divingDeeper/scene/customLoadingScreen
 
 
 integrat idea from JustKeepSwimming
+- integrate resource loader (asser manager)
+- integrate soundtrack
 
 integrate idea from babylonjs-webpack-es6-master
 - search for clean-webpack plugin
-
-integrate resource loader (asser manager)
-
-integrate soundtrack
 
 set config in environnement variable
 https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html

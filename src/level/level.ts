@@ -1,8 +1,8 @@
 import { Scene, ArcRotateCamera, Mesh, Vector3, KeyboardEventTypes, CannonJSPlugin, SceneLoader, Color4, Light } from '@babylonjs/core';
-import Helpers from './helpers/helpers'
-import Core from './core'
-import { Blackhole, Character, Ground, Skybox } from './components/index';
-import * as States from './states/index';
+import Helpers from '../helpers/helpers'
+import Core from '../core'
+import { Blackhole, Character, Ground, Skybox } from '../components/index';
+import * as States from '../states/index';
 //if (process.env.NODE_ENV === 'development') {
 
 
